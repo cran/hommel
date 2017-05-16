@@ -1,0 +1,16 @@
+b210b8604414178ecbf01b4ed25e7d2d *DESCRIPTION
+ea4c85328560151f3b03f0ce64577488 *NAMESPACE
+eeb8211f599d2a515194f626eff120bf *R/RcppExports.R
+7f55c2179864a3d66850f01dedf26240 *R/concentration-function.R
+c5c0a7d0e7da186d66d0c338c1092574 *R/discoveries-function.R
+353f82b4553b1cfaf91a80d1096d5a9a *R/hommel-class.R
+7e9848cd10d9fb6b638ffc7159367962 *R/hommel-function.R
+7bae89827b32b2e2e31792e494e73704 *man/concentration-function.Rd
+b013bc7cdd3194e69453067e19241bbe *man/fdp-function.Rd
+9adfc878a0649b10e604ba8627878147 *man/hommel-class.Rd
+b76f0f5dca9271ae35c836a4909228f4 *man/hommel-function.Rd
+57685ba6ee2ee591a315959967fcc4db *man/hommel-package.Rd
+b48094f432093b6ca37e76849753c796 *man/localtest-function.Rd
+b3c2ed44779a401576a627310ebf30e1 *src/RcppExports.cpp
+cae6c51302bce70acabe7aadb9ee84b8 *src/hommel.cpp
+bbc3d5217eeb8f8f4b7736148bb6de84 *src/hommel_init.cpp
