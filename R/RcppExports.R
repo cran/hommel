@@ -2,30 +2,30 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 findalpha <- function(p, m, simesfactor, simes) {
-    .Call('hommel_findalpha', PACKAGE = 'hommel', p, m, simesfactor, simes)
+    .Call(hommel_findalpha, p, m, simesfactor, simes)
 }
 
 findsimesfactor <- function(simes, m) {
-    .Call('hommel_findsimesfactor', PACKAGE = 'hommel', simes, m)
+    .Call(hommel_findsimesfactor, simes, m)
 }
 
 adjustedElementary <- function(p, alpha, m, simesfactor) {
-    .Call('hommel_adjustedElementary', PACKAGE = 'hommel', p, alpha, m, simesfactor)
+    .Call(hommel_adjustedElementary, p, alpha, m, simesfactor)
 }
 
 adjustedIntersection <- function(pI, alpha, m, simesfactor) {
-    .Call('hommel_adjustedIntersection', PACKAGE = 'hommel', pI, alpha, m, simesfactor)
+    .Call(hommel_adjustedIntersection, pI, alpha, m, simesfactor)
 }
 
 findHalpha <- function(jumpalpha, alpha, m) {
-    .Call('hommel_findHalpha', PACKAGE = 'hommel', jumpalpha, alpha, m)
+    .Call(hommel_findHalpha, jumpalpha, alpha, m)
 }
 
 findConcentration <- function(p, simesfactor, h, alpha, m) {
-    .Call('hommel_findConcentration', PACKAGE = 'hommel', p, simesfactor, h, alpha, m)
+    .Call(hommel_findConcentration, p, simesfactor, h, alpha, m)
 }
 
 findDiscoveries <- function(p, allp, simesfactor, h, alpha, k, m) {
-    .Call('hommel_findDiscoveries', PACKAGE = 'hommel', p, allp, simesfactor, h, alpha, k, m)
+    .Call(hommel_findDiscoveries, p, allp, simesfactor, h, alpha, k, m)
 }
 

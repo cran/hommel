@@ -9,14 +9,24 @@ discoveries <- function(hommel, ix, alpha=0.05)
     k <- length(p)
   }
 
+  if (any(is.na(p)))
+    stop('NAs produced by selecting with ix')
+  
+  if (k == 0) {
+    warning('empty selection')
+    return(0)  
+  }    
+    
   h <- findHalpha(hommel@jumpalpha, alpha, m)
+  
   simesfactor <- hommel@simesfactor[h+1]
   
   allsortedp <- hommel@p[hommel@sorter]
   
   discoveries <- findDiscoveries(p, allsortedp, simesfactor, h, alpha, k, m)
-  
-  discoveries
+
+  return(discoveries)
+    
 }
 
 tdp <- function(hommel, ix, alpha=0.05) 
@@ -49,6 +59,14 @@ localtest <- function(hommel, ix)
     k <- length(p)
   }
   
+  if (any(is.na(p)))
+    stop('NAs produced by selecting with ix')
+  
+  if (k == 0) {
+    warning('empty selection')
+    return(p=1, adjusted=1)
+  }
+
   sortedp <- sort(p)
   
   pI <- min(sortedp/(1:k))

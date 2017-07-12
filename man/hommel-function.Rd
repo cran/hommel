@@ -13,7 +13,7 @@
   \item{simes}{If \code{TRUE}, the Simes test is used (Hommel's method), if \code{FALSE} Hommel's robust test is used.}
 }
 
-\value{Returns a \code{\link{hommel}} object.}
+\value{Returns a \code{\link{hommel-class}} object.}
 
 \author{Jelle Goeman, Rosa Meijer, Thijmen Krebs.}
 

@@ -254,7 +254,7 @@ int getCategory(double   p,               // p-value for which we need the categ
                 double   alpha,           // alpha itself
                 int      m)               // size of the problem
 {
-  if (p==0)
+  if (p==0 || simesfactor==0)
     return 1;
   else
     if (alpha == 0)
