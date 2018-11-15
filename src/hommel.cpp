@@ -43,7 +43,7 @@ void findjumps (
 
 // Finds the jumps of h(alpha)
 // [[Rcpp::export]]
-std::vector<double> findalpha( 
+std::vector<double> findalpha_old( 
     std::vector<double>   &p,            // vector of p-values (sorted!)
     int                   m,             // length of p
     std::vector<double>   &simesfactor,  // denominator of local test
@@ -72,6 +72,93 @@ std::vector<double> findalpha(
       
   return alpha;
 }
+
+// Implementation of Fortune 1989
+std::vector<int> findhull (
+    int             m,              // length of p
+    vector<double>  &p)             // p-values (sorted!)
+{
+  // intialize output length
+  int r;
+  vector<int> hull(1);
+  hull.push_back(1);
+  bool notconvex;
+  
+  // find the hull
+  for (int i = 2; i <= m; i++)
+  {
+    if (i == m || (m-1) * (p[i-1] - p[0]) < (i-1) * (p[m-1] - p[0])) {
+      do {
+        r = hull.size()-1;
+        if (r>1) {
+          notconvex = ((i-hull[r-1]) * (p[hull[r]-1] - p[hull[r-1]-1]) >=
+            (hull[r] - hull[r-1]) * (p[i-1] - p[hull[r-1]-1])); 
+        } else {
+          if (r == 1) {
+            notconvex = (i * p[hull[1]-1] >= hull[1] * p[i-1]); 
+          } else {
+            notconvex = false;
+          }
+        }
+        if (notconvex) hull.resize(r);
+      } while (notconvex);
+    hull.push_back(i);
+  }
+}
+  
+  return hull;
+}
+
+// Finds the jumps of h(alpha)
+// [[Rcpp::export]]
+std::vector<double> findalpha( 
+    std::vector<double>   &p,            // vector of p-values (sorted!)
+    int                   m,             // length of p
+    std::vector<double>   &simesfactor,  // denominator of local test
+    bool                  simes )        // assume simes yes or no
+{
+  // initialize output
+  std::vector<double> alpha(m);
+  
+  // initialize
+  vector<int> hull = findhull(m, p);
+  double Dk=0;
+  int k=hull.size()-1;
+  int i=1;
+
+  // algorithm for alpha*
+  while (i <= m) {
+    if (k > 1)
+      Dk = p[hull[k-1]-1] * (hull[k] - m + i) - p[hull[k]-1] * (hull[k-1] - m +i);
+    if (k > 1 && Dk < 0) {
+      k--;
+    } else {
+      alpha[i-1] = simesfactor[i] * p[hull[k]-1] / (hull[k] - m + i);
+      i++;
+    }
+  }
+
+  // Bound alpha by 1
+  if (!simes) {
+    for (int i=m-1; i>=0; i--) 
+      if (alpha[i] > 1)
+        alpha[i] = 1;
+  }
+  
+  // Find the cumulative maximum
+  if (!simes) {
+    for (int i=m-2; i>=0; i--) {
+      if (alpha[i] < alpha[i+1])
+        alpha[i] = alpha[i+1];
+    }
+  }
+  
+  // add (m+1)st element to alpha
+  alpha.push_back(0);  
+
+  return alpha;
+}
+
 
 // Calculates the denominator of the local test
 // [[Rcpp::export]]

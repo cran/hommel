@@ -48,7 +48,7 @@ fdp <- function(hommel, ix, alpha=0.05)
   1-tdp(hommel, ix, alpha=alpha) 
 }
 
-localtest <- function(hommel, ix) 
+localtest_old <- function(hommel, ix) 
 {
   m <- length(hommel@p)
   if (missing(ix)) {
@@ -79,3 +79,35 @@ localtest <- function(hommel, ix)
   
   list (p = rawp, adjusted = adjustedp)
 }
+
+localtest <- function(hommel, ix, tdp=0)
+{
+  m <- length(hommel@p)
+  if (missing(ix)) {
+    p = hommel@p
+    n = m
+  }
+  else {
+    p <- hommel@p[ix]
+    n <- length(p)
+  }
+  
+  if (tdp<0 | tdp>1)
+    stop("'tdp' must be chosen from [0,1]")
+  
+  if (any(is.na(p)))
+    stop('NAs produced by selecting with ix')
+  
+  if (n == 0)
+    stop('empty selection')
+  
+  k<-tdp*n
+  sortedp <- sort(p)
+  pI <- sortedp[rank(sortedp)>k]
+  pI <- min(pI/rank(pI))
+  
+  adjustedp <- adjustedIntersection(pI, hommel@jumpalpha, m, hommel@simesfactor)
+  
+  return(adjustedp)
+}
+

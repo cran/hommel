@@ -1,3 +1,6 @@
+version 1.2
+- local test function now has option tdp
+
 version 1.1
 - added check to discoveries and localtest in case of empty selection
 - added check to discoveries and localtest in case of invalid selection
