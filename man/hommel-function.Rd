@@ -20,7 +20,9 @@
 \references{
 Hommel, G. (1988). A stagewise rejective multiple test procedure based on a modified Bonferroni test. Biometrika, 75(2), 383-386.
 
-Meijer, R., Krebs, T., Solari, A., & Goeman, J. (2016). Simultaneous Control of All False Discovery Proportions by an Extension of Hommel's Method. arXiv preprint arXiv:1611.06739.
+Meijer, R. J., Krebs, T. J., & Goeman, J. J. (2019). Hommel's procedure in linear time. Biometrical Journal, 61(1), 73-82.
+
+Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.
 }
 
 \examples{

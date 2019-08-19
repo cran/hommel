@@ -5,20 +5,6 @@
 
 using namespace Rcpp;
 
-// findalpha_old
-std::vector<double> findalpha_old(std::vector<double>& p, int m, std::vector<double>& simesfactor, bool simes);
-RcppExport SEXP _hommel_findalpha_old(SEXP pSEXP, SEXP mSEXP, SEXP simesfactorSEXP, SEXP simesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type p(pSEXP);
-    Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type simesfactor(simesfactorSEXP);
-    Rcpp::traits::input_parameter< bool >::type simes(simesSEXP);
-    rcpp_result_gen = Rcpp::wrap(findalpha_old(p, m, simesfactor, simes));
-    return rcpp_result_gen;
-END_RCPP
-}
 // findalpha
 std::vector<double> findalpha(std::vector<double>& p, int m, std::vector<double>& simesfactor, bool simes);
 RcppExport SEXP _hommel_findalpha(SEXP pSEXP, SEXP mSEXP, SEXP simesfactorSEXP, SEXP simesSEXP) {
@@ -102,7 +88,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // findDiscoveries
-int findDiscoveries(std::vector<double>& p, std::vector<double>& allp, double simesfactor, int h, double alpha, int k, int m);
+std::vector<int> findDiscoveries(std::vector<double>& p, std::vector<double>& allp, double simesfactor, int h, double alpha, int k, int m);
 RcppExport SEXP _hommel_findDiscoveries(SEXP pSEXP, SEXP allpSEXP, SEXP simesfactorSEXP, SEXP hSEXP, SEXP alphaSEXP, SEXP kSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -120,7 +106,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_hommel_findalpha_old", (DL_FUNC) &_hommel_findalpha_old, 4},
     {"_hommel_findalpha", (DL_FUNC) &_hommel_findalpha, 4},
     {"_hommel_findsimesfactor", (DL_FUNC) &_hommel_findsimesfactor, 2},
     {"_hommel_adjustedElementary", (DL_FUNC) &_hommel_adjustedElementary, 4},

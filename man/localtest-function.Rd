@@ -21,7 +21,9 @@
 \author{Jelle Goeman.}
 
 \references{
-Goeman, J., Meijer, R., Krebs, T., Solari, A. (2011). Simultaneous Control of All False Discovery Proportions in Large-Scale Multiple Hypothesis Testing. arXiv preprint  arXiv:1611.06739v2.
+Meijer, R. J., Krebs, T. J., & Goeman, J. J. (2019). Hommel's procedure in linear time. Biometrical Journal, 61(1), 73-82.
+
+Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.
 }
 
 \examples{
@@ -36,4 +38,5 @@ Goeman, J., Meijer, R., Krebs, T., Solari, A. (2011). Simultaneous Control of Al
   # Test any intersection hypothesis of interest against any chosen threshold
   localtest(hom, tdp=0.2)
   localtest(hom, 1:3, 0.8)
+
 }

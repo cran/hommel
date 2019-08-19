@@ -20,7 +20,7 @@
 \author{Jelle Goeman.}
 
 \references{
-Meijer, R., Krebs, T., Solari, A., & Goeman, J. (2016). Simultaneous Control of All False Discovery Proportions by an Extension of Hommel's Method. arXiv preprint arXiv:1611.06739.
+Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.
 }
 
 \examples{

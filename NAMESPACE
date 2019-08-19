@@ -8,4 +8,4 @@ exportClasses(hommel)
 
 exportMethods(show, summary, p.adjust)
 
-export(hommel, discoveries, fdp, tdp, localtest, concentration)
+export(hommel, discoveries, tdp, fdp, localtest, concentration)

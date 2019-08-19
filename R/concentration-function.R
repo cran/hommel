@@ -9,6 +9,7 @@ concentration <- function(hommel, alpha = 0.05) {
   
   z <- findConcentration(sortedp, simesfactor, h, alpha, m)
   
-  sortedp[z]
+  return(sortedp[z])
+
 }
   
