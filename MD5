@@ -1,5 +1,5 @@
-6b9db7537396a7b592a5a0cb99908a89 *ChangeLog
-07c8f30750391c61add3ac122bc67b45 *DESCRIPTION
+4424f1f751ba71a9b12a86ea7bad14ab *ChangeLog
+45ad2c2d4e287d3fbdddb8962cc773b4 *DESCRIPTION
 0c8b61382b7aa970926927b25b7675d8 *NAMESPACE
 720edb5d1b0936618dc92424fd5dd62a *R/RcppExports.R
 b41452bd393f4af2e9d4b190df7e3ee9 *R/concentration-function.R
@@ -7,7 +7,7 @@ b41452bd393f4af2e9d4b190df7e3ee9 *R/concentration-function.R
 353f82b4553b1cfaf91a80d1096d5a9a *R/hommel-class.R
 7e9848cd10d9fb6b638ffc7159367962 *R/hommel-function.R
 87b958bb0b85c20a97b712ffda8b4776 *R/hommelHull.R
-394322262702e39f3ad2aa8e1f2b048d *R/localtest-function.R
+f612ee2b688ff4b88b36add67d047ecc *R/localtest-function.R
 081ad954b1871026cae67d82479c2e1f *man/concentration-function.Rd
 f3191d38492433d7c50cc5a1fdbce1a8 *man/fdp-function.Rd
 91320449bf115a9507afce8e72dc330a *man/hommel-class.Rd

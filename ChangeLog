@@ -1,3 +1,6 @@
+version 1.4
+- repaired localtest in case of ties or large tdp
+
 version 1.3
 - added incremental option to discoveries
 - replaced old linearithmic algorithm with linear version as published in Biometrical Journal

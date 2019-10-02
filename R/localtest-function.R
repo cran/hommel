@@ -10,8 +10,8 @@ localtest <- function(hommel, ix, tdp=0)
     n <- length(p)
   }
 
-  if (tdp<0 | tdp>1)
-    stop("'tdp' must be chosen from [0,1]")
+  if (tdp<0 | tdp>=1)
+    stop("'tdp' must be chosen from [0,1)")
 
   if (any(is.na(p)))
     stop('NAs produced by selecting with ix')
@@ -19,10 +19,10 @@ localtest <- function(hommel, ix, tdp=0)
   if (n == 0)
     stop('empty selection')
 
-  k<-tdp*n
+  k <- floor(tdp*n)
   sortedp <- sort(p)
-  pI <- sortedp[rank(sortedp)>k]
-  pI <- min(pI/rank(pI))
+  pI <- sortedp[seq_len(n-k)+k]
+  pI <- min(pI/rank(pI, ties.method='first'))
 
   adjustedp <- adjustedIntersection(pI, hommel@jumpalpha, m, hommel@simesfactor)
 
