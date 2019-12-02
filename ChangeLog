@@ -1,3 +1,6 @@
+version 1.5
+- replaced recursive Find function by more stable iterative one
+
 version 1.4
 - repaired localtest in case of ties or large tdp
 

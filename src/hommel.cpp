@@ -292,16 +292,31 @@ int findConcentration(std::vector<double> &p,           // vector of p-values (s
 }
 
 // Find function for disjoint set data structure
+// (1) Old recursive version
+// int Find(int x,
+//          vector<int> &parent)
+// {
+//   if (parent[x] != x)
+//   {
+//     parent[x] = Find(parent[x], parent);
+//   }
+//   
+//   return parent[x];
+// }
+// (2) iterative version (more stable)
 int Find(int x,
          vector<int> &parent)
 {
-  if (parent[x] != x)
+  while (parent[x] != x)
   {
-    parent[x] = Find(parent[x], parent);
+    parent[x] = parent[parent[x]];
+    x         = parent[x];
   }
   
-  return parent[x];
+  return x;
 }
+
+
 
 // Union function for disjoint set data structure
 // Extra: we keep track of the lowest entry of each disjoint set

@@ -1,5 +1,5 @@
-4424f1f751ba71a9b12a86ea7bad14ab *ChangeLog
-45ad2c2d4e287d3fbdddb8962cc773b4 *DESCRIPTION
+afeec36fc4baa32f5172e8c5dcffd780 *ChangeLog
+1bd8317a7dfca98dd27032e0ba611bb0 *DESCRIPTION
 0c8b61382b7aa970926927b25b7675d8 *NAMESPACE
 720edb5d1b0936618dc92424fd5dd62a *R/RcppExports.R
 b41452bd393f4af2e9d4b190df7e3ee9 *R/concentration-function.R
@@ -15,4 +15,4 @@ ac6f791e039a83144c88b57c0d2e0ada *man/hommel-function.Rd
 57685ba6ee2ee591a315959967fcc4db *man/hommel-package.Rd
 f4cadf28f44c4e135e737bd094587eec *man/localtest-function.Rd
 ced1c9d17110c08aaa570bda17d2b625 *src/RcppExports.cpp
-c1074586e010623ad9979a207fa02956 *src/hommel.cpp
+5a80f58a9901c95e6071f058aa318ab4 *src/hommel.cpp
