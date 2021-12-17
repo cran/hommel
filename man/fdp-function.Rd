@@ -24,7 +24,7 @@
 
 \value{Returns a single integer (discoveries) or proportion (fdp, tdp), or a vector if incremental = TRUE. These represent the lower confidence bound (discoveries, tdp) or upper confidence bound (fdp). The confidence intervals are one-sided: the upper confidence bound for discoveries is the size of the set, and for tdp 1. The lower bound for fdp is 0.}
 
-\author{Jelle Goeman, Rosa Meijer, Thijmen Krebs, Mitra Ebrahimpoor.}
+\author{Jelle Goeman, Rosa Meijer, Thijmen Krebs, Mitra Ebrahimpoor, Xu Chen.}
 
 \references{
 Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.

@@ -1,3 +1,7 @@
+version 1.6
+- replaced input p-value subset of findDiscoveries function with index set
+- fixed incorrect calculation of tdp and fdp if ix was logical
+
 version 1.5
 - replaced recursive Find function by more stable iterative one
 

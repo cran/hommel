@@ -25,7 +25,7 @@ findConcentration <- function(p, simesfactor, h, alpha, m) {
     .Call(`_hommel_findConcentration`, p, simesfactor, h, alpha, m)
 }
 
-findDiscoveries <- function(p, allp, simesfactor, h, alpha, k, m) {
-    .Call(`_hommel_findDiscoveries`, p, allp, simesfactor, h, alpha, k, m)
+findDiscoveries <- function(idx, allp, simesfactor, h, alpha, k, m) {
+    .Call(`_hommel_findDiscoveries`, idx, allp, simesfactor, h, alpha, k, m)
 }
 

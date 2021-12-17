@@ -5,22 +5,27 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // findalpha
-std::vector<double> findalpha(std::vector<double>& p, int m, std::vector<double>& simesfactor, bool simes);
+Rcpp::NumericVector findalpha(Rcpp::NumericVector& p, int m, Rcpp::NumericVector& simesfactor, bool simes);
 RcppExport SEXP _hommel_findalpha(SEXP pSEXP, SEXP mSEXP, SEXP simesfactorSEXP, SEXP simesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type p(pSEXP);
     Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type simesfactor(simesfactorSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type simesfactor(simesfactorSEXP);
     Rcpp::traits::input_parameter< bool >::type simes(simesSEXP);
     rcpp_result_gen = Rcpp::wrap(findalpha(p, m, simesfactor, simes));
     return rcpp_result_gen;
 END_RCPP
 }
 // findsimesfactor
-std::vector<double> findsimesfactor(bool simes, int m);
+Rcpp::NumericVector findsimesfactor(bool simes, int m);
 RcppExport SEXP _hommel_findsimesfactor(SEXP simesSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -32,40 +37,40 @@ BEGIN_RCPP
 END_RCPP
 }
 // adjustedElementary
-std::vector<double> adjustedElementary(std::vector<double>& p, std::vector<double>& alpha, int m, std::vector<double>& simesfactor);
+Rcpp::NumericVector adjustedElementary(Rcpp::NumericVector& p, Rcpp::NumericVector& alpha, int m, Rcpp::NumericVector& simesfactor);
 RcppExport SEXP _hommel_adjustedElementary(SEXP pSEXP, SEXP alphaSEXP, SEXP mSEXP, SEXP simesfactorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type p(pSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type simesfactor(simesfactorSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type simesfactor(simesfactorSEXP);
     rcpp_result_gen = Rcpp::wrap(adjustedElementary(p, alpha, m, simesfactor));
     return rcpp_result_gen;
 END_RCPP
 }
 // adjustedIntersection
-double adjustedIntersection(double pI, std::vector<double>& alpha, int m, std::vector<double>& simesfactor);
+double adjustedIntersection(double pI, Rcpp::NumericVector& alpha, int m, Rcpp::NumericVector& simesfactor);
 RcppExport SEXP _hommel_adjustedIntersection(SEXP pISEXP, SEXP alphaSEXP, SEXP mSEXP, SEXP simesfactorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type pI(pISEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type alpha(alphaSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type simesfactor(simesfactorSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type simesfactor(simesfactorSEXP);
     rcpp_result_gen = Rcpp::wrap(adjustedIntersection(pI, alpha, m, simesfactor));
     return rcpp_result_gen;
 END_RCPP
 }
 // findHalpha
-int findHalpha(std::vector<double>& jumpalpha, double alpha, int m);
+int findHalpha(Rcpp::NumericVector& jumpalpha, double alpha, int m);
 RcppExport SEXP _hommel_findHalpha(SEXP jumpalphaSEXP, SEXP alphaSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type jumpalpha(jumpalphaSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type jumpalpha(jumpalphaSEXP);
     Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< int >::type m(mSEXP);
     rcpp_result_gen = Rcpp::wrap(findHalpha(jumpalpha, alpha, m));
@@ -73,12 +78,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // findConcentration
-int findConcentration(std::vector<double>& p, double simesfactor, int h, double alpha, int m);
+int findConcentration(Rcpp::NumericVector& p, double simesfactor, int h, double alpha, int m);
 RcppExport SEXP _hommel_findConcentration(SEXP pSEXP, SEXP simesfactorSEXP, SEXP hSEXP, SEXP alphaSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type p(pSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type p(pSEXP);
     Rcpp::traits::input_parameter< double >::type simesfactor(simesfactorSEXP);
     Rcpp::traits::input_parameter< int >::type h(hSEXP);
     Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
@@ -88,19 +93,19 @@ BEGIN_RCPP
 END_RCPP
 }
 // findDiscoveries
-std::vector<int> findDiscoveries(std::vector<double>& p, std::vector<double>& allp, double simesfactor, int h, double alpha, int k, int m);
-RcppExport SEXP _hommel_findDiscoveries(SEXP pSEXP, SEXP allpSEXP, SEXP simesfactorSEXP, SEXP hSEXP, SEXP alphaSEXP, SEXP kSEXP, SEXP mSEXP) {
+Rcpp::IntegerVector findDiscoveries(Rcpp::IntegerVector& idx, Rcpp::NumericVector& allp, double simesfactor, int h, double alpha, int k, int m);
+RcppExport SEXP _hommel_findDiscoveries(SEXP idxSEXP, SEXP allpSEXP, SEXP simesfactorSEXP, SEXP hSEXP, SEXP alphaSEXP, SEXP kSEXP, SEXP mSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector<double>& >::type p(pSEXP);
-    Rcpp::traits::input_parameter< std::vector<double>& >::type allp(allpSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector& >::type idx(idxSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type allp(allpSEXP);
     Rcpp::traits::input_parameter< double >::type simesfactor(simesfactorSEXP);
     Rcpp::traits::input_parameter< int >::type h(hSEXP);
     Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(findDiscoveries(p, allp, simesfactor, h, alpha, k, m));
+    rcpp_result_gen = Rcpp::wrap(findDiscoveries(idx, allp, simesfactor, h, alpha, k, m));
     return rcpp_result_gen;
 END_RCPP
 }

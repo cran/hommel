@@ -6,12 +6,12 @@ using std::vector;
 
 // Implementation of Fortune 1989
 std::vector<int> findhull (
-    int             m,              // length of p
-    vector<double>  &p)             // p-values (sorted!)
+    int                   m,              // length of p
+    Rcpp::NumericVector   &p)             // p-values (sorted!)
 {
   // intialize output length
   int r;
-  vector<int> hull(1);
+  std::vector<int> hull(1);
   hull.push_back(1);
   bool notconvex;
   
@@ -42,17 +42,17 @@ std::vector<int> findhull (
 
 // Finds the jumps of h(alpha)
 // [[Rcpp::export]]
-std::vector<double> findalpha( 
-    std::vector<double>   &p,            // vector of p-values (sorted!)
+Rcpp::NumericVector findalpha(
+    Rcpp::NumericVector   &p,            // vector of p-values (sorted!)
     int                   m,             // length of p
-    std::vector<double>   &simesfactor,  // denominator of local test
+    Rcpp::NumericVector   &simesfactor,  // denominator of local test
     bool                  simes )        // assume simes yes or no
 {
   // initialize output
-  std::vector<double> alpha(m);
+  Rcpp::NumericVector alpha(m+1);
   
   // initialize
-  vector<int> hull = findhull(m, p);
+  std::vector<int> hull = findhull(m, p);
   double Dk=0;
   int k=hull.size()-1;
   int i=1;
@@ -84,8 +84,8 @@ std::vector<double> findalpha(
     }
   }
   
-  // add (m+1)st element to alpha
-  alpha.push_back(0);  
+  // add (m+1)st element to alpha (Not needed as it's already added!)
+  //alpha.push_back(0);
   
   return alpha;
 }
@@ -164,12 +164,12 @@ std::vector<double> findalpha(
 
 // Calculates the denominator of the local test
 // [[Rcpp::export]]
-std::vector<double> findsimesfactor(
+Rcpp::NumericVector findsimesfactor(
     bool            simes,        // assume simes yes or no
     int             m )           // number of p-values
 {
-  vector<double> simesfactor(m+1);  // denominator of simes test
-  double multiplier = 0;            // extra multiplier term needed for non-simes 
+  Rcpp::NumericVector simesfactor(m+1);  // denominator of simes test
+  double multiplier = 0;                 // extra multiplier term needed for non-simes
   simesfactor[0] = 0;
   if (simes) 
     for (int i=1; i<=m; i++)
@@ -186,19 +186,19 @@ std::vector<double> findsimesfactor(
 
 // Calculate adjusted p-values for all elementary hypotheses
 // [[Rcpp::export]]
-std::vector<double> adjustedElementary( 
-    std::vector<double>   &p,             // vector of p-values (sorted!)
-    std::vector<double>   &alpha,         // jumps of the function h
+Rcpp::NumericVector adjustedElementary(
+    Rcpp::NumericVector   &p,             // vector of p-values (sorted!)
+    Rcpp::NumericVector   &alpha,         // jumps of the function h
     int                   m,              // length of p
-    std::vector<double>   &simesfactor )  // denominator of local test
+    Rcpp::NumericVector   &simesfactor )  // denominator of local test
 {
   // adjust p
-  vector<double> adjusted(m, 0);
+  Rcpp::NumericVector adjusted(m);
   int i = 1;
   int j = m+1;
-  while (i <= m) 
+  while (i <= m)
   {
-    if (simesfactor[j-1] * p[i-1] <= alpha[j-1]) 
+    if (simesfactor[j-1] * p[i-1] <= alpha[j-1])
     {
       adjusted[i-1] = std::min(simesfactor[j] * p[i-1], alpha[j-1]);
       i++;
@@ -214,9 +214,9 @@ std::vector<double> adjustedElementary(
 // [[Rcpp::export]]
 double adjustedIntersection( 
     double                pI,             // p-value
-    std::vector<double>   &alpha,         // jumps of the function h
+    Rcpp::NumericVector   &alpha,         // jumps of the function h
     int                   m,              // length of p
-    std::vector<double>   &simesfactor )  // denominator of local test
+    Rcpp::NumericVector   &simesfactor )  // denominator of local test
 {
   // intitialize 
   int lower = 1;
@@ -248,7 +248,7 @@ double adjustedIntersection(
 
 // Calculate the value of h(alpha) for a given alpha
 // [[Rcpp::export]]
-int findHalpha (std::vector<double> &jumpalpha,   // points where h jumps
+int findHalpha (Rcpp::NumericVector &jumpalpha,   // points where h jumps
                 double              alpha,        // alpha where h is to be evaluated
                 int                 m)            // size of the multiple testing problem
 {
@@ -272,7 +272,7 @@ int findHalpha (std::vector<double> &jumpalpha,   // points where h jumps
  
 // Calculates the size of the concentration set at a fixed alpha
 // [[Rcpp::export]]
-int findConcentration(std::vector<double> &p,           // vector of p-values (sorted!)
+int findConcentration(Rcpp::NumericVector &p,           // vector of p-values (sorted!)
                       double              simesfactor,  // simesfactor at h(alpha)
                       int                 h,            // h(alpha)
                       double              alpha,        // alpha itself
@@ -293,8 +293,8 @@ int findConcentration(std::vector<double> &p,           // vector of p-values (s
 
 // Find function for disjoint set data structure
 // (1) Old recursive version
-// int Find(int x,
-//          vector<int> &parent)
+// int Find(int              x,
+//          std::vector<int> &parent)
 // {
 //   if (parent[x] != x)
 //   {
@@ -304,8 +304,8 @@ int findConcentration(std::vector<double> &p,           // vector of p-values (s
 //   return parent[x];
 // }
 // (2) iterative version (more stable)
-int Find(int x,
-         vector<int> &parent)
+int Find(int              x,
+         std::vector<int> &parent)
 {
   while (parent[x] != x)
   {
@@ -323,9 +323,9 @@ int Find(int x,
 // That way we can find the lower set to merge with
 void Union(int x,
            int y,
-           vector<int> &parent,
-           vector<int> &lowest,
-           vector<int> &rank)
+           std::vector<int> &parent,
+           std::vector<int> &lowest,
+           std::vector<int> &rank)
 {
   int xRoot = Find(x, parent);
   int yRoot = Find(y, parent);
@@ -373,19 +373,19 @@ int getCategory(double   p,               // p-value for which we need the categ
 // Calculates the lower bound to the number of false hypotheses
 // Implements the algorithm based on the disjoint set structure
 // [[Rcpp::export]]
-std::vector<int> findDiscoveries(std::vector<double>   &p,           // p-values in set I (not sorted)
-                                 std::vector<double>   &allp,        // all p-values (sorted!)
-                                 double                simesfactor,  // simesfactor at h(alpha)
-                                 int                   h,            // h(alpha)
-                                 double                alpha,        // alpha
-                                 int                   k,            // size of I
-                                 int                   m)            // size of the problem
+Rcpp::IntegerVector findDiscoveries(Rcpp::IntegerVector   &idx,         // indices in set I (not sorted & start from 1)
+                                    Rcpp::NumericVector   &allp,        // all p-values (sorted!)
+                                    double                simesfactor,  // simesfactor at h(alpha)
+                                    int                   h,            // h(alpha)
+                                    double                alpha,        // alpha
+                                    int                   k,            // size of I
+                                    int                   m)            // size of the problem
 {
   // calculate categories for the p-values
-  vector<int> cats;
+  std::vector<int> cats;
   for (int i=0; i<k; i++)
   {
-    cats.push_back(getCategory(p[i], simesfactor, alpha, m));
+    cats.push_back(getCategory(allp[idx[i]-1], simesfactor, alpha, m));
   }
   
   // find the maximum category needed
@@ -402,9 +402,9 @@ std::vector<int> findDiscoveries(std::vector<double>   &p,           // p-values
   maxcat = std::min(maxcat, maxcatI);
   
   // prepare disjoint set data structure
-  vector<int> parent;
-  vector<int> lowest;
-  vector<int> rank;
+  std::vector<int> parent;
+  std::vector<int> lowest;
+  std::vector<int> rank;
   for (int i=0; i <= maxcat; i++)
   {
     parent.push_back(i);
@@ -413,7 +413,7 @@ std::vector<int> findDiscoveries(std::vector<double>   &p,           // p-values
   }
 
   // The algorithm proper. See pseudocode in paper
-  vector<int> discoveries(1,0);
+  Rcpp::IntegerVector discoveries(k+1,0);
   int lowestInPi;
   for (int i=0; i < k; i++)
   {
@@ -422,17 +422,17 @@ std::vector<int> findDiscoveries(std::vector<double>   &p,           // p-values
       lowestInPi = lowest[Find(cats[i], parent)];
       if (lowestInPi == 1)
       {
-        discoveries.push_back(discoveries.back()+1);
+        discoveries[i+1] = discoveries[i]+1;
       }
       else
       {
-        discoveries.push_back(discoveries.back());
+        discoveries[i+1] = discoveries[i];
         Union(lowestInPi-1, Find(cats[i], parent), parent, lowest, rank);
       }
     }
     else
     {
-      discoveries.push_back(discoveries.back());
+        discoveries[i+1] = discoveries[i];
     }
   }
   
