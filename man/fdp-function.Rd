@@ -27,7 +27,7 @@
 \author{Jelle Goeman, Rosa Meijer, Thijmen Krebs, Mitra Ebrahimpoor, Xu Chen.}
 
 \references{
-Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.
+Goeman, J. J., Meijer, R. J., Krebs, T. J., & Solari, A. (2019). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. Biometrika, 106(4), 841-856.
 }
 
 \examples{

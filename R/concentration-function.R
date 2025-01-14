@@ -1,4 +1,4 @@
-concentration <- function(hommel, alpha = 0.05) {
+concentration <- function(hommel, alpha = 0.05, what = c("p", "z", "u")) {
   
   m <- length(hommel@p)
   
@@ -9,7 +9,11 @@ concentration <- function(hommel, alpha = 0.05) {
   
   z <- findConcentration(sortedp, simesfactor, h, alpha, m)
   
-  return(sortedp[z])
+  what = match.arg(what)
+  
+  if (what == "z") return(z)
+  if (what == "p") return(sortedp[z])
+  if (what == "u") return(z - m + h + 1)
 
 }
   

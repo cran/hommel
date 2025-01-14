@@ -1,3 +1,12 @@
+version 1.8
+- added missing line 5: s_j=0 from Algorithm 3 in Meijer, Krebs, Goeman (2018) to adjustedElementary()
+- added authors@R
+
+version 1.7
+- discoveries() now simply returns m-h when called on the full set
+- concentration now outputs p, z or u, as desired
+- Biometrika reference updated
+
 version 1.6
 - replaced input p-value subset of findDiscoveries function with index set
 - fixed incorrect calculation of tdp and fdp if ix was logical

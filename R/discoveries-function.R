@@ -2,8 +2,8 @@ discoveries <- function(hommel, ix, incremental=FALSE, alpha=0.05)
 {
   m <- length(hommel@p)
   if (missing(ix) & incremental==FALSE) {
-    k  <- m
-    ix <- hommel@sorter
+    h <- findHalpha(hommel@jumpalpha, alpha, m)
+    return(m-h)
   } 
   if (missing(ix) & incremental==TRUE) {
     stop('Found incremental=TRUE but missing ix.')

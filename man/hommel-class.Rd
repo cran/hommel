@@ -29,7 +29,7 @@
   }
 }
 
-\seealso{\link{select}, \link{concentration}.}
+\seealso{\link{tdp}, \link{concentration}.}
 
 \author{Jelle Goeman, Rosa Meijer, Thijmen Krebs.}
 
@@ -38,7 +38,7 @@ Hommel, G. (1988). A stagewise rejective multiple test procedure based on a modi
 
 Meijer, R. J., Krebs, T. J., & Goeman, J. J. (2019). Hommel's procedure in linear time. Biometrical Journal, 61(1), 73-82.
 
-Goeman, J., Meijer, R., Krebs, T., & Solari, A. (2016). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. arXiv preprint arXiv:1611.06739.
+Goeman, J. J., Meijer, R. J., Krebs, T. J., & Solari, A. (2019). Simultaneous control of all false discovery proportions in large-scale multiple hypothesis testing. Biometrika, 106(4), 841-856.
 }
 
 \keyword{methods}

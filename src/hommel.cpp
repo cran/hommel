@@ -200,7 +200,10 @@ Rcpp::NumericVector adjustedElementary(
   {
     if (simesfactor[j-1] * p[i-1] <= alpha[j-1])
     {
-      adjusted[i-1] = std::min(simesfactor[j] * p[i-1], alpha[j-1]);
+      if (j > m)
+        adjusted[i-1] = alpha[m];
+      else
+        adjusted[i-1] = std::min(simesfactor[j] * p[i-1], alpha[j-1]);
       i++;
     }
     else
